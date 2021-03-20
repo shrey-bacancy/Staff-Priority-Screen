@@ -1,65 +1,43 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  useColorScheme,
-  View,
-} from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { StyleSheet, TouchableNativeFeedback, View } from "react-native";
 import StyleConfig from "../constants/StyleConfig";
+import DefaultText from "./DefaultText";
 
 const ProjectTabItem = (props) => {
-  const isDarkMode = useColorScheme() === "dark";
-
   return (
-    <View
-      style={{
-        ...styles.tabItemContainer,
-        ...{
-          backgroundColor:
-            props.selectedItem === props.itemData.item.id
-              ? StyleConfig.colors.primaryColor
-              : StyleConfig.colors.inactiveTabBackground,
-        },
-      }}
-    >
+    <View style={styles(props).tabItemContainer}>
       <TouchableNativeFeedback onPress={props.onPress}>
-        <View style={styles.tabContainer}>
-          <Text
-            style={{
-              ...styles.tabLabel,
-              ...{
-                color:
-                  props.selectedItem === props.itemData.item.id
-                    ? Colors.white
-                    : StyleConfig.colors.mainText,
-              },
-            }}
-          >
-            {props.itemData.item.label}
-          </Text>
+        <View style={styles(props).tabContainer}>
+          <DefaultText textStyle={styles(props).tabLabel}>
+            {props.label}
+          </DefaultText>
         </View>
       </TouchableNativeFeedback>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  tabItemContainer: {
-    borderRadius: 30,
-    overflow: "hidden",
-    marginRight: StyleConfig.width / 20,
-  },
-  tabContainer: {
-    paddingHorizontal: StyleConfig.width / 15,
-    paddingVertical: StyleConfig.height / 100,
-    borderRadius: 30,
-  },
-  tabLabel: {
-    fontFamily: "Gilroy-Bold",
-    fontSize: 14,
-  },
-});
+const styles = (props) =>
+  StyleSheet.create({
+    tabItemContainer: {
+      borderRadius: 30,
+      overflow: "hidden",
+      marginRight: 20,
+      backgroundColor:
+        props.selectedItem === props.id
+          ? StyleConfig.colors.primaryColor
+          : StyleConfig.colors.inactiveTabBackground,
+    },
+    tabContainer: {
+      paddingHorizontal: 28,
+      paddingVertical: 9,
+    },
+    tabLabel: {
+      color:
+        props.selectedItem === props.id
+          ? StyleConfig.colors.white
+          : StyleConfig.colors.mainText,
+    },
+  });
 
 export default ProjectTabItem;

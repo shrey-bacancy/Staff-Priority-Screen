@@ -6,83 +6,69 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import StyleConfig from "../constants/StyleConfig";
-import EvilIcons from "react-native-vector-icons/EvilIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import DefaultText from "./DefaultText";
 
 const TaskCardItem = (props) => {
   const isDarkMode = useColorScheme() === "dark";
+
   const colorSchemeDarkAndLightMode = isDarkMode
     ? StyleConfig.colors.white
     : StyleConfig.colors.black;
+
   const colorSchemePriority =
-    props.priorityType === "Normal" ||
-    props.priorityType === "normal" ||
-    props.priorityType === "NORMAL"
+    props.priorityType === "Normal"
       ? StyleConfig.colors.priorityNormal
       : StyleConfig.colors.priorityHigh;
 
   let statusStyle;
 
-  if (
-    props.status === "Working" ||
-    props.status === "working" ||
-    props.status === "WORKING"
-  ) {
+  if (props.status === "Working") {
     statusStyle = {
-      color: StyleConfig.colors.working,
+      color: StyleConfig.colors.workingStatus,
       textTransform: "uppercase",
     };
   }
 
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.taskItemContainer}>
+    <View style={styles().itemContainer}>
+      <View style={styles().taskItemContainer}>
         <TouchableNativeFeedback>
-          <View
-            style={{
-              ...styles.taskDetailsContainer,
-              ...{ borderColor: colorSchemeDarkAndLightMode },
-            }}
-          >
+          <View style={styles(isDarkMode).taskDetailsContainer}>
             <View style={{ justifyContent: "space-evenly" }}>
-              <Text
-                style={{
-                  ...styles.taskName,
-                  ...{ color: colorSchemeDarkAndLightMode },
-                }}
-              >
+              <DefaultText textStyle={styles(isDarkMode).taskName}>
                 Task One
-              </Text>
-              <Text
-                style={{
-                  ...styles.projectName,
-                  ...{ color: StyleConfig.colors.mainText },
-                }}
-              >
+              </DefaultText>
+              <DefaultText textStyle={styles().projectName}>
                 Project One
-              </Text>
+              </DefaultText>
             </View>
             <View style={{ justifyContent: "space-between" }}>
-              <View style={styles.timeContainer}>
+              <View style={styles().timeContainer}>
                 {props.iconClockShow && (
-                  <EvilIcons
+                  <Icon
                     name="clock"
+                    type="evilicon"
                     size={24}
-                    color={colorSchemeDarkAndLightMode}
+                    color={
+                      isDarkMode
+                        ? StyleConfig.colors.white
+                        : StyleConfig.colors.black
+                    }
                   />
                 )}
                 {props.taskDone && (
-                  <FontAwesome
+                  <Icon
                     name="check-circle"
+                    type="font-awesome"
                     size={24}
                     color={StyleConfig.colors.taskCompleteIcon}
                   />
                 )}
-                <Text
-                  style={{
-                    ...styles.timeToCompleteTask,
+                <DefaultText
+                  textStyle={{
+                    ...styles().timeToCompleteTask,
                     ...{
                       color: props.isLate
                         ? StyleConfig.colors.lateText
@@ -91,150 +77,130 @@ const TaskCardItem = (props) => {
                   }}
                 >
                   {props.taskTime}
-                </Text>
+                </DefaultText>
               </View>
               {props.taskDone === false ||
                 (props.taskDone === undefined && (
-                  <Text
-                    style={{
-                      ...styles.deadlineOrWorkingStatus,
+                  <DefaultText
+                    textStyle={{
+                      ...styles().deadlineOrWorkingStatus,
                       ...statusStyle,
                     }}
                   >
                     {props.status}{" "}
-                    {props.status === "Due" ||
-                    props.status === "due" ||
-                    props.status === "DUE"
-                      ? `in ${props.deadlineTime}`
-                      : null}
-                  </Text>
+                    {props.status === "Due" ? `in ${props.deadlineTime}` : null}
+                  </DefaultText>
                 ))}
             </View>
           </View>
         </TouchableNativeFeedback>
       </View>
 
-      <View style={styles.assignedByAndPriorityOrDoneContainer}>
-        <Text
-          style={{
-            ...styles.assignedBy,
-            ...{ color: colorSchemeDarkAndLightMode },
-          }}
-        >
-          {props.assignedByName && <Text>Assigned By:</Text>}{" "}
-          <Text
-            style={{
-              ...styles.assignedByNameText,
-              ...{ color: colorSchemeDarkAndLightMode },
-            }}
-          >
+      <View style={styles().assignedByAndPriorityOrDoneContainer}>
+        <DefaultText textStyle={styles(isDarkMode).assignedBy}>
+          {props.assignedByName && <DefaultText>Assigned By:</DefaultText>}{" "}
+          <DefaultText textStyle={styles(isDarkMode).assignedByNameText}>
             {props.assignedByName}
-          </Text>
-        </Text>
+          </DefaultText>
+        </DefaultText>
         {props.taskDone ? (
           <Button
             title="Done"
-            containerStyle={styles.buttonContainerStyle}
-            buttonStyle={styles.buttonStyle}
+            containerStyle={styles().buttonContainerStyle}
+            buttonStyle={styles().buttonStyle}
           />
         ) : (
-          <Text
-            style={{
-              ...styles.priority,
-              ...{ color: colorSchemeDarkAndLightMode },
-            }}
-          >
+          <DefaultText textStyle={styles(isDarkMode).priority}>
             Priority:{" "}
-            <Text
-              style={{
-                ...styles.priorityTypeText,
-                ...{ color: colorSchemePriority, textTransform: "capitalize" },
+            <DefaultText
+              textStyle={{
+                ...styles().priorityTypeText,
+                ...{ color: colorSchemePriority },
               }}
             >
               {props.priorityType}
-            </Text>
-          </Text>
+            </DefaultText>
+          </DefaultText>
         )}
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  itemContainer: {
-    marginHorizontal: StyleConfig.width / 20,
-    marginBottom: StyleConfig.width / 20,
-  },
-  taskItemContainer: {
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-  taskDetailsContainer: {
-    flexDirection: "row",
-    padding: StyleConfig.width / 30,
-    justifyContent: "space-between",
-    height: StyleConfig.height / 10,
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  taskName: {
-    fontFamily: "Gilroy-Bold",
-    fontSize: 20,
-  },
-  projectName: {
-    fontFamily: "Gilroy-Regular",
-    fontSize: 14,
-  },
-  timeContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  timeToCompleteTask: {
-    fontFamily: "Gilroy-Bold",
-    fontSize: 16,
-    textAlign: "right",
-    paddingLeft: StyleConfig.width / 60,
-  },
-  deadlineOrWorkingStatus: {
-    fontFamily: "Gilroy-Regular",
-    fontSize: 14,
-    color: StyleConfig.colors.mainText,
-    textTransform: "capitalize",
-  },
-  assignedByAndPriorityOrDoneContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  assignedBy: {
-    fontFamily: "Gilroy-Regular",
-    fontSize: 14,
-    paddingVertical: StyleConfig.width / 50,
-  },
-  assignedByNameText: {
-    fontFamily: "Gilroy-Bold",
-    fontSize: 14,
-  },
-  buttonContainerStyle: {
-    marginRight: StyleConfig.width / 20,
-    position: "absolute",
-    bottom: "40%",
-    left: "70%",
-  },
-  buttonStyle: {
-    borderRadius: 20,
-    paddingHorizontal: StyleConfig.width / 15,
-    backgroundColor: StyleConfig.colors.primaryColor,
-  },
-  priority: {
-    fontFamily: "Gilroy-Regular",
-    fontSize: 14,
-    paddingVertical: StyleConfig.width / 50,
-  },
-  priorityTypeText: {
-    fontFamily: "Gilroy-Bold",
-    fontSize: 14,
-  },
-});
+const styles = (isDarkMode, props) =>
+  StyleSheet.create({
+    itemContainer: {
+      marginHorizontal: StyleConfig.width / 20,
+      marginBottom: StyleConfig.width / 20,
+    },
+    taskItemContainer: {
+      borderRadius: 10,
+      overflow: "hidden",
+    },
+    taskDetailsContainer: {
+      flexDirection: "row",
+      padding: StyleConfig.width / 30,
+      justifyContent: "space-between",
+      height: StyleConfig.height / 10,
+      borderWidth: 2,
+      borderRadius: 10,
+      borderColor: isDarkMode
+        ? StyleConfig.colors.white
+        : StyleConfig.colors.black,
+    },
+    taskName: {
+      fontSize: 20,
+      color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
+    },
+    projectName: {
+      fontFamily: "Gilroy-Regular",
+    },
+    timeContainer: {
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+    },
+    timeToCompleteTask: {
+      fontSize: 16,
+      textAlign: "right",
+      paddingLeft: StyleConfig.width / 60,
+    },
+    deadlineOrWorkingStatus: {
+      fontFamily: "Gilroy-Regular",
+      textTransform: "capitalize",
+    },
+    assignedByAndPriorityOrDoneContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    assignedBy: {
+      fontFamily: "Gilroy-Regular",
+      paddingVertical: StyleConfig.width / 50,
+      color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
+    },
+    assignedByNameText: {
+      color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
+    },
+    buttonContainerStyle: {
+      marginRight: StyleConfig.width / 20,
+      borderRadius: 20,
+      overflow: "hidden",
+      position: "absolute",
+      bottom: "40%",
+      left: "70%",
+    },
+    buttonStyle: {
+      paddingHorizontal: StyleConfig.width / 15,
+      backgroundColor: StyleConfig.colors.primaryColor,
+    },
+    priority: {
+      fontFamily: "Gilroy-Regular",
+      paddingVertical: StyleConfig.width / 50,
+      color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
+    },
+    priorityTypeText: {
+      textTransform: "capitalize",
+    },
+  });
 
 export default TaskCardItem;

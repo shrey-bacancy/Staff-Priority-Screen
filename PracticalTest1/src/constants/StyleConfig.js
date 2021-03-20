@@ -16,7 +16,7 @@ export default {
     priorityNormal: "#EB9D31",
     priorityHigh: "red",
     taskTitleAndAssignedNameAndTime: "#404354",
-    working: "#DE9898",
+    workingStatus: "#DE9898",
     lateText: "#EF5555",
     tabBackground: "#F0F0F0",
     inactiveTabBackground: "#DCE7EB",
