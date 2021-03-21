@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   tabBarTextStyle: {
-    fontFamily: "Gilroy-Bold",
+    fontFamily: StyleConfig.fontGilroyBold,
     fontSize: 14,
   },
   tabBarUnderlineStyle: {

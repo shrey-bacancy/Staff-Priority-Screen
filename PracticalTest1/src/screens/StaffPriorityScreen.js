@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, useColorScheme, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "react-native-elements";
 import StyleConfig from "../constants/StyleConfig";
+import Strings from "../constants/Strings";
 import ProjectTabBar from "../components/ProjectsTabBar";
 import DefaultText from "../components/DefaultText";
 import CustomScrollableTabBar from "../components/CustomScrollableTabBar";
@@ -11,26 +11,26 @@ const StaffPriorityScreen = () => {
   const isDarkMode = useColorScheme() === "dark";
 
   return (
-    <SafeAreaView style={styles().containerStyleCommon}>
+    <View style={styles().containerStyleCommon}>
       <View style={styles().headerContainer}>
         <View style={styles().containerStyleCommon}>
           <DefaultText textStyle={styles(isDarkMode).headingText}>
-            My Staff:
+            {Strings.StaffPriorityScreen.mainHeading}
           </DefaultText>
           <DefaultText textStyle={styles().subHeadingText}>
-            Priority List
+            {Strings.StaffPriorityScreen.subHeading}
           </DefaultText>
         </View>
         <Icon
-          name="sort-amount-asc"
-          type="font-awesome"
+          name={Strings.StaffPriorityScreen.sortIconName}
+          type={Strings.StaffPriorityScreen.sortIconType}
           size={28}
           color={StyleConfig.colors.primaryColor}
         />
       </View>
       <ProjectTabBar />
       <CustomScrollableTabBar />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -46,7 +46,7 @@ const styles = (isDarkMode) =>
     },
     headingText: {
       textTransform: "uppercase",
-      fontFamily: "Gilroy-Black",
+      fontFamily: StyleConfig.fontGilroyBlack,
       fontSize: 24,
       letterSpacing: 2,
       color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,

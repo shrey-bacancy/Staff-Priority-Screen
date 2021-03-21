@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { Text } from "react-native-elements";
 import StyleConfig from "../constants/StyleConfig";
 
 const DefaultText = (props) => {
@@ -12,7 +13,7 @@ const DefaultText = (props) => {
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontFamily: "Gilroy-Bold",
+    fontFamily: StyleConfig.fontGilroyBold,
     fontSize: 14,
     color: StyleConfig.colors.mainText,
   },

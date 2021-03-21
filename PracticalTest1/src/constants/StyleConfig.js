@@ -21,4 +21,8 @@ export default {
     tabBackground: "#F0F0F0",
     inactiveTabBackground: "#DCE7EB",
   },
+
+  fontGilroyRegular: "Gilroy-Regular",
+  fontGilroyBold: "Gilroy-Bold",
+  fontGilroyBlack: "Gilroy-Black",
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   TouchableNativeFeedback,
   useColorScheme,
   View,
 } from "react-native";
 import { Button, Icon } from "react-native-elements";
+import Strings from "../constants/Strings";
 import StyleConfig from "../constants/StyleConfig";
 import DefaultText from "./DefaultText";
 
@@ -36,20 +36,20 @@ const TaskCardItem = (props) => {
       <View style={styles().taskItemContainer}>
         <TouchableNativeFeedback>
           <View style={styles(isDarkMode).taskDetailsContainer}>
-            <View style={{ justifyContent: "space-evenly" }}>
+            <View style={styles().taskAndProjectNameContainer}>
               <DefaultText textStyle={styles(isDarkMode).taskName}>
-                Task One
+                {Strings.TaskCardItem.taskName}
               </DefaultText>
               <DefaultText textStyle={styles().projectName}>
-                Project One
+                {Strings.TaskCardItem.projectName}
               </DefaultText>
             </View>
-            <View style={{ justifyContent: "space-between" }}>
+            <View style={styles().timeDeadlineContainer}>
               <View style={styles().timeContainer}>
                 {props.iconClockShow && (
                   <Icon
-                    name="clock"
-                    type="evilicon"
+                    name={Strings.TaskCardItem.clockIconName}
+                    type={Strings.TaskCardItem.clockIconType}
                     size={24}
                     color={
                       isDarkMode
@@ -60,8 +60,8 @@ const TaskCardItem = (props) => {
                 )}
                 {props.taskDone && (
                   <Icon
-                    name="check-circle"
-                    type="font-awesome"
+                    name={Strings.TaskCardItem.checkIconName}
+                    type={Strings.TaskCardItem.checkIconType}
                     size={24}
                     color={StyleConfig.colors.taskCompleteIcon}
                   />
@@ -96,22 +96,24 @@ const TaskCardItem = (props) => {
         </TouchableNativeFeedback>
       </View>
 
-      <View style={styles().assignedByAndPriorityOrDoneContainer}>
+      <View style={styles().assignedByAndPriorityOrDoneButtonContainer}>
         <DefaultText textStyle={styles(isDarkMode).assignedBy}>
-          {props.assignedByName && <DefaultText>Assigned By:</DefaultText>}{" "}
+          {props.assignedByName && (
+            <DefaultText>{Strings.TaskCardItem.assignedByText}</DefaultText>
+          )}
           <DefaultText textStyle={styles(isDarkMode).assignedByNameText}>
             {props.assignedByName}
           </DefaultText>
         </DefaultText>
         {props.taskDone ? (
           <Button
-            title="Done"
+            title={Strings.TaskCardItem.buttonTitle}
             containerStyle={styles().buttonContainerStyle}
             buttonStyle={styles().buttonStyle}
           />
         ) : (
           <DefaultText textStyle={styles(isDarkMode).priority}>
-            Priority:{" "}
+            {Strings.TaskCardItem.priorityText}
             <DefaultText
               textStyle={{
                 ...styles().priorityTypeText,
@@ -127,7 +129,7 @@ const TaskCardItem = (props) => {
   );
 };
 
-const styles = (isDarkMode, props) =>
+const styles = (isDarkMode) =>
   StyleSheet.create({
     itemContainer: {
       marginHorizontal: StyleConfig.width / 20,
@@ -148,12 +150,18 @@ const styles = (isDarkMode, props) =>
         ? StyleConfig.colors.white
         : StyleConfig.colors.black,
     },
+    taskAndProjectNameContainer: {
+      justifyContent: "space-evenly",
+    },
     taskName: {
       fontSize: 20,
       color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
     },
     projectName: {
-      fontFamily: "Gilroy-Regular",
+      fontFamily: StyleConfig.fontGilroyRegular,
+    },
+    timeDeadlineContainer: {
+      justifyContent: "space-between",
     },
     timeContainer: {
       flexDirection: "row",
@@ -166,15 +174,15 @@ const styles = (isDarkMode, props) =>
       paddingLeft: StyleConfig.width / 60,
     },
     deadlineOrWorkingStatus: {
-      fontFamily: "Gilroy-Regular",
+      fontFamily: StyleConfig.fontGilroyRegular,
       textTransform: "capitalize",
     },
-    assignedByAndPriorityOrDoneContainer: {
+    assignedByAndPriorityOrDoneButtonContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
     },
     assignedBy: {
-      fontFamily: "Gilroy-Regular",
+      fontFamily: StyleConfig.fontGilroyRegular,
       paddingVertical: StyleConfig.width / 50,
       color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
     },
@@ -194,7 +202,7 @@ const styles = (isDarkMode, props) =>
       backgroundColor: StyleConfig.colors.primaryColor,
     },
     priority: {
-      fontFamily: "Gilroy-Regular",
+      fontFamily: StyleConfig.fontGilroyRegular,
       paddingVertical: StyleConfig.width / 50,
       color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
     },
