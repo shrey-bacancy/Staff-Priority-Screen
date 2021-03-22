@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, useColorScheme, View } from "react-native";
+import { useColorScheme, View } from "react-native";
 import { Icon } from "react-native-elements";
-import StyleConfig from "../constants/StyleConfig";
-import Strings from "../constants/Strings";
-import ProjectTabBar from "../components/ProjectsTabBar";
-import DefaultText from "../components/DefaultText";
-import CustomScrollableTabBar from "../components/CustomScrollableTabBar";
+import StyleConfig from "../../constants/StyleConfig";
+import Strings from "../../constants/Strings";
+import styles from "./styles";
+import {
+  CustomScrollableTabBar,
+  DefaultText,
+  ProjectTabBar,
+} from "../../components";
 
 const StaffPriorityScreen = () => {
   const isDarkMode = useColorScheme() === "dark";
@@ -33,28 +36,5 @@ const StaffPriorityScreen = () => {
     </View>
   );
 };
-
-const styles = (isDarkMode) =>
-  StyleSheet.create({
-    containerStyleCommon: {
-      flex: 1,
-    },
-    headerContainer: {
-      flexDirection: "row",
-      paddingHorizontal: 20,
-      paddingVertical: 30,
-    },
-    headingText: {
-      textTransform: "uppercase",
-      fontFamily: StyleConfig.fontGilroyBlack,
-      fontSize: 24,
-      letterSpacing: 2,
-      color: isDarkMode ? StyleConfig.colors.white : StyleConfig.colors.black,
-    },
-    subHeadingText: {
-      fontSize: 18,
-      letterSpacing: 2.5,
-    },
-  });
 
 export default StaffPriorityScreen;

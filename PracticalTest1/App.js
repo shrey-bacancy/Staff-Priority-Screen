@@ -1,5 +1,5 @@
 import React from "react";
-import StaffPriorityScreen from "./src/screens/StaffPriorityScreen";
+import { StaffPriorityScreen } from "./src/screens";
 
 const App = () => {
   return <StaffPriorityScreen />;

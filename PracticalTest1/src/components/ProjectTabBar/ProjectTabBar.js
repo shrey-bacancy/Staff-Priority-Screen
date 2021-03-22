@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, View } from "react-native";
-import ProjectTabItem from "../components/ProjectTabItem";
-import { projectData } from "../data/dummy_data";
+import ProjectTabItem from "../ProjectTabItem/ProjectTabItem";
+import { projectData } from "../../data/dummy_data";
 
 const ProjectTabBar = () => {
   const [selectedProjectItem, setSelectedProjectItem] = useState("1");
