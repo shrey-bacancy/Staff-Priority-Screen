@@ -3,12 +3,8 @@ import { StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
 import StyleConfig from "../../constants/StyleConfig";
 
-const DefaultText = (props) => {
-  return (
-    <Text style={{ ...styles.textStyle, ...props.textStyle }}>
-      {props.children}
-    </Text>
-  );
+const DefaultText = ({ textStyle, children }) => {
+  return <Text style={{ ...styles.textStyle, ...textStyle }}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({
