@@ -13,11 +13,6 @@ const TaskCardItem = (props) => {
     ? StyleConfig.colors.white
     : StyleConfig.colors.black;
 
-  const colorSchemePriority =
-    props.priorityType === "Normal"
-      ? StyleConfig.colors.priorityNormal
-      : StyleConfig.colors.priorityHigh;
-
   let statusStyle;
 
   if (props.status === "Working") {
@@ -25,6 +20,18 @@ const TaskCardItem = (props) => {
       color: StyleConfig.colors.workingStatus,
       textTransform: "uppercase",
     };
+  }
+
+  let colorSchemePriority;
+
+  if (props.priorityType === "Normal") {
+    colorSchemePriority = { color: StyleConfig.colors.priorityNormal };
+  }
+
+  let colorSchemeTimeToCompleteTask;
+
+  if (props.isLate) {
+    colorSchemeTimeToCompleteTask = { color: StyleConfig.colors.lateText };
   }
 
   return (
@@ -64,12 +71,8 @@ const TaskCardItem = (props) => {
                 )}
                 <DefaultText
                   textStyle={{
-                    ...styles().timeToCompleteTask,
-                    ...{
-                      color: props.isLate
-                        ? StyleConfig.colors.lateText
-                        : colorSchemeDarkAndLightMode,
-                    },
+                    ...styles(colorSchemeDarkAndLightMode).timeToCompleteTask,
+                    ...colorSchemeTimeToCompleteTask,
                   }}
                 >
                   {props.taskTime}
@@ -114,7 +117,7 @@ const TaskCardItem = (props) => {
             <DefaultText
               textStyle={{
                 ...styles().priorityTypeText,
-                ...{ color: colorSchemePriority },
+                ...colorSchemePriority,
               }}
             >
               {props.priorityType}

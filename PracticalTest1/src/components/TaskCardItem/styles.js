@@ -42,6 +42,7 @@ const styles = (colorSchemeDarkAndLightMode) => {
       fontSize: 16,
       textAlign: "right",
       paddingLeft: 7,
+      color: colorSchemeDarkAndLightMode,
     },
     deadlineOrWorkingStatus: {
       fontFamily: StyleConfig.fontGilroyRegular,
@@ -77,6 +78,7 @@ const styles = (colorSchemeDarkAndLightMode) => {
     },
     priorityTypeText: {
       textTransform: "capitalize",
+      color: StyleConfig.colors.priorityHigh,
     },
   });
 };
