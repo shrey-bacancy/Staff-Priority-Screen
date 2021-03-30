@@ -4,8 +4,8 @@ import StyleConfig from "../../constants/StyleConfig";
 const styles = (colorSchemeDarkAndLightMode) => {
   return StyleSheet.create({
     itemContainer: {
-      marginHorizontal: StyleConfig.width / 20,
-      marginBottom: StyleConfig.width / 20,
+      marginHorizontal: 21,
+      marginBottom: 21,
     },
     taskItemContainer: {
       borderRadius: 10,
@@ -13,9 +13,9 @@ const styles = (colorSchemeDarkAndLightMode) => {
     },
     taskDetailsContainer: {
       flexDirection: "row",
-      padding: StyleConfig.width / 30,
+      padding: 13,
       justifyContent: "space-between",
-      height: StyleConfig.height / 10,
+      height: 90,
       borderWidth: 2,
       borderRadius: 10,
       borderColor: colorSchemeDarkAndLightMode,
@@ -41,7 +41,7 @@ const styles = (colorSchemeDarkAndLightMode) => {
     timeToCompleteTask: {
       fontSize: 16,
       textAlign: "right",
-      paddingLeft: StyleConfig.width / 60,
+      paddingLeft: 7,
     },
     deadlineOrWorkingStatus: {
       fontFamily: StyleConfig.fontGilroyRegular,
@@ -53,27 +53,26 @@ const styles = (colorSchemeDarkAndLightMode) => {
     },
     assignedBy: {
       fontFamily: StyleConfig.fontGilroyRegular,
-      paddingVertical: StyleConfig.width / 50,
+      paddingVertical: 9,
       color: colorSchemeDarkAndLightMode,
     },
     assignedByNameText: {
       color: colorSchemeDarkAndLightMode,
     },
     buttonContainerStyle: {
-      marginRight: StyleConfig.width / 20,
       borderRadius: 20,
       overflow: "hidden",
       position: "absolute",
-      bottom: "40%",
+      bottom: "45%",
       left: "70%",
     },
     buttonStyle: {
-      paddingHorizontal: StyleConfig.width / 15,
+      paddingHorizontal: 27,
       backgroundColor: StyleConfig.colors.primaryColor,
     },
     priority: {
       fontFamily: StyleConfig.fontGilroyRegular,
-      paddingVertical: StyleConfig.width / 50,
+      paddingVertical: 9,
       color: colorSchemeDarkAndLightMode,
     },
     priorityTypeText: {
