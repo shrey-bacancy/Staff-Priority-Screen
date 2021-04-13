@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, View } from "react-native";
-import { taskList } from "../../data/dummy_data";
+import { TASK_LIST } from "../../data/dummy_data";
 
 const TaskCardList = ({ id }) => {
   const renderTaskListItem = ({ item }) => {
@@ -20,7 +20,7 @@ const TaskCardList = ({ id }) => {
 
   return (
     <FlatList
-      data={taskList}
+      data={TASK_LIST}
       renderItem={renderTaskListItem}
       showsVerticalScrollIndicator={false}
     />

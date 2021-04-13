@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import StyleConfig from "../../constants/StyleConfig";
 
-const styles = (colorSchemeDarkAndLightMode) => {
+const styles = (colorSchemeDarkAndLightMode, colorSchemeGreyAndLightMode) => {
   return StyleSheet.create({
     itemContainer: {
       marginHorizontal: 21,
@@ -18,7 +18,7 @@ const styles = (colorSchemeDarkAndLightMode) => {
       height: 90,
       borderWidth: 2,
       borderRadius: 10,
-      borderColor: colorSchemeDarkAndLightMode,
+      borderColor: StyleConfig.colors.outline,
     },
     taskAndProjectNameContainer: {
       justifyContent: "space-evenly",
@@ -44,18 +44,27 @@ const styles = (colorSchemeDarkAndLightMode) => {
       paddingLeft: 7,
       color: colorSchemeDarkAndLightMode,
     },
-    deadlineOrWorkingStatus: {
+    timeToCompleteTaskLate: {
+      color: StyleConfig.colors.lateText,
+    },
+    deadlineStatus: {
       fontFamily: StyleConfig.fontGilroyRegular,
       textTransform: "capitalize",
+    },
+    workingStatus: {
+      color: StyleConfig.colors.workingStatus,
+      textTransform: "uppercase",
     },
     assignedByAndPriorityOrDoneButtonContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
     },
     assignedBy: {
-      fontFamily: StyleConfig.fontGilroyRegular,
       paddingVertical: 9,
       color: colorSchemeDarkAndLightMode,
+    },
+    assignedByText: {
+      fontFamily: StyleConfig.fontGilroyRegular,
     },
     assignedByNameText: {
       color: colorSchemeDarkAndLightMode,
@@ -74,11 +83,13 @@ const styles = (colorSchemeDarkAndLightMode) => {
     priority: {
       fontFamily: StyleConfig.fontGilroyRegular,
       paddingVertical: 9,
-      color: colorSchemeDarkAndLightMode,
     },
-    priorityTypeText: {
+    priorityHighText: {
       textTransform: "capitalize",
       color: StyleConfig.colors.priorityHigh,
+    },
+    priorityNormalText: {
+      color: StyleConfig.colors.priorityNormal,
     },
   });
 };

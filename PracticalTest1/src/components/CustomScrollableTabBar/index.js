@@ -5,7 +5,7 @@ import ScrollableTabView, {
 } from "react-native-scrollable-tab-view";
 import { TaskCardList } from "..";
 import StyleConfig from "../../constants/StyleConfig";
-import { taskAssignedToData } from "../../data/dummy_data";
+import { TASK_ASSIGNED_TO } from "../../data/dummy_data";
 import styles from "./styles";
 
 const CustomScrollableTabBar = () => {
@@ -26,7 +26,7 @@ const CustomScrollableTabBar = () => {
       tabBarPosition="top"
       tabBarUnderlineStyle={styles.tabBarUnderlineStyle}
     >
-      {taskAssignedToData.map((item) => {
+      {TASK_ASSIGNED_TO.map((item) => {
         return (
           <View tabLabel={item.name} key={item.id} style={styles.taskListStyle}>
             <TaskCardList id={item.id} />

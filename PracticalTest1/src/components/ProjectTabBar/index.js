@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, View } from "react-native";
-import ProjectTabItem from "../ProjectTabItem/ProjectTabItem";
-import { projectData } from "../../data/dummy_data";
+import { ProjectTabItem } from "..";
+import { PROJECTS } from "../../data/dummy_data";
 
 const ProjectTabBar = () => {
   const [selectedProjectItem, setSelectedProjectItem] = useState("1");
@@ -22,8 +22,7 @@ const ProjectTabBar = () => {
   return (
     <View>
       <FlatList
-        extraData={selectedProjectItem}
-        data={projectData}
+        data={PROJECTS}
         renderItem={renderProjectTabItem}
         horizontal
         showsHorizontalScrollIndicator={false}

@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   tabBarTextStyle: {
     fontFamily: StyleConfig.fontGilroyBold,
     fontSize: 14,
+    fontWeight: undefined,
   },
   tabBarUnderlineStyle: {
     borderRadius: 40,

@@ -12,6 +12,7 @@ export default {
     mainHeading: "#111119",
     primaryColor: "#E3512C",
     mainText: "#8D99B1",
+    outline: "#D3D4D6",
     taskCompleteIcon: "#32CE61",
     priorityNormal: "#EB9D31",
     priorityHigh: "red",

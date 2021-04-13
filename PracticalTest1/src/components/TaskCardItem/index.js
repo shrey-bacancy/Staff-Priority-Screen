@@ -16,31 +16,26 @@ const TaskCardItem = (props) => {
   let statusStyle;
 
   if (props.status === "Working") {
-    statusStyle = {
-      color: StyleConfig.colors.workingStatus,
-      textTransform: "uppercase",
-    };
+    statusStyle = styles().workingStatus;
   }
 
   let colorSchemePriority;
 
   if (props.priorityType === "Normal") {
-    colorSchemePriority = { color: StyleConfig.colors.priorityNormal };
+    colorSchemePriority = styles().priorityNormalText;
   }
 
   let colorSchemeTimeToCompleteTask;
 
   if (props.isLate) {
-    colorSchemeTimeToCompleteTask = { color: StyleConfig.colors.lateText };
+    colorSchemeTimeToCompleteTask = styles().timeToCompleteTaskLate;
   }
 
   return (
     <View style={styles().itemContainer}>
       <View style={styles().taskItemContainer}>
         <TouchableNativeFeedback>
-          <View
-            style={styles(colorSchemeDarkAndLightMode).taskDetailsContainer}
-          >
+          <View style={styles().taskDetailsContainer}>
             <View style={styles().taskAndProjectNameContainer}>
               <DefaultText
                 textStyle={styles(colorSchemeDarkAndLightMode).taskName}
@@ -57,7 +52,7 @@ const TaskCardItem = (props) => {
                   <Icon
                     name={Strings.TaskCardItem.clockIconName}
                     type={Strings.TaskCardItem.clockIconType}
-                    size={24}
+                    size={28}
                     color={colorSchemeDarkAndLightMode}
                   />
                 )}
@@ -65,7 +60,7 @@ const TaskCardItem = (props) => {
                   <Icon
                     name={Strings.TaskCardItem.checkIconName}
                     type={Strings.TaskCardItem.checkIconType}
-                    size={24}
+                    size={28}
                     color={StyleConfig.colors.taskCompleteIcon}
                   />
                 )}
@@ -81,7 +76,7 @@ const TaskCardItem = (props) => {
               {props.taskDone === false || props.taskDone === undefined ? (
                 <DefaultText
                   textStyle={{
-                    ...styles().deadlineOrWorkingStatus,
+                    ...styles().deadlineStatus,
                     ...statusStyle,
                   }}
                 >
@@ -97,7 +92,9 @@ const TaskCardItem = (props) => {
       <View style={styles().assignedByAndPriorityOrDoneButtonContainer}>
         <DefaultText textStyle={styles(colorSchemeDarkAndLightMode).assignedBy}>
           {props.assignedByName && (
-            <DefaultText>{Strings.TaskCardItem.assignedByText}</DefaultText>
+            <DefaultText textStyle={styles().assignedByText}>
+              {Strings.TaskCardItem.assignedByText}
+            </DefaultText>
           )}
           <DefaultText
             textStyle={styles(colorSchemeDarkAndLightMode).assignedByNameText}
@@ -112,11 +109,11 @@ const TaskCardItem = (props) => {
             buttonStyle={styles().buttonStyle}
           />
         ) : (
-          <DefaultText textStyle={styles(colorSchemeDarkAndLightMode).priority}>
+          <DefaultText textStyle={styles().priority}>
             {Strings.TaskCardItem.priorityText}
             <DefaultText
               textStyle={{
-                ...styles().priorityTypeText,
+                ...styles().priorityHighText,
                 ...colorSchemePriority,
               }}
             >

@@ -1,11 +1,5 @@
-import React from "react";
 import { StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
 import StyleConfig from "../../constants/StyleConfig";
-
-const DefaultText = ({ textStyle, children }) => {
-  return <Text style={{ ...styles.textStyle, ...textStyle }}>{children}</Text>;
-};
 
 const styles = StyleSheet.create({
   textStyle: {
@@ -15,4 +9,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DefaultText;
+export default styles;

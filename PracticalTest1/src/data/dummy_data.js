@@ -1,14 +1,14 @@
 import React from "react";
 import { TaskCardItem } from "../components";
 
-export const projectData = [
+export const PROJECTS = [
   { id: "1", label: "All" },
   { id: "2", label: "Project One" },
   { id: "3", label: "Project Two" },
   { id: "4", label: "Project Three" },
 ];
 
-export const taskAssignedToData = [
+export const TASK_ASSIGNED_TO = [
   { id: "1", name: "All" },
   { id: "2", name: "Marian" },
   { id: "3", name: "Robert" },
@@ -17,7 +17,7 @@ export const taskAssignedToData = [
   { id: "6", name: "Maximillian" },
 ];
 
-export const taskList = [
+export const TASK_LIST = [
   {
     id: "1",
     taskItem: (

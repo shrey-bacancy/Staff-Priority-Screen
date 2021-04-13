@@ -1,6 +1,6 @@
-export { default as CustomScrollableTabBar } from "./CustomScrollableTabBar/CustomScrollableTabBar";
-export { default as DefaultText } from "./DefaultText/DefaultText";
-export { default as ProjectTabBar } from "./ProjectTabBar/ProjectTabBar";
-export { default as ProjectTabItem } from "./ProjectTabItem/ProjectTabItem";
-export { default as TaskCardItem } from "./TaskCardItem/TaskCardItem";
-export { default as TaskCardList } from "./TaskCardList/TaskCardList";
+export { default as CustomScrollableTabBar } from "./CustomScrollableTabBar";
+export { default as DefaultText } from "./DefaultText";
+export { default as ProjectTabBar } from "./ProjectTabBar";
+export { default as ProjectTabItem } from "./ProjectTabItem";
+export { default as TaskCardItem } from "./TaskCardItem";
+export { default as TaskCardList } from "./TaskCardList";
